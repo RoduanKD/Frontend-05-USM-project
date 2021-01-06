@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app permanent>
+  <v-navigation-drawer color="primary" dark app permanent>
       <template v-slot:prepend>
         <v-list-item two-line>
           <v-list-item-avatar>
