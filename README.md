@@ -20,5 +20,13 @@ npm run build
 npm run lint
 ```
 
+## TODO
+- Boards (Mohammad & Nour)
+- Profile (Wajd)
+- Settings (Raneem & Katy)
+- Chat (Taiseer & Solieman)
+- Search (Firas & Khaled)
+- Login/Signup (Ahmad & Abdallah)
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
