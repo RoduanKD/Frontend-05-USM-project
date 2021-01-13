@@ -84,6 +84,11 @@ export default {
     this.axios.get('http://syberctf.hadara-group.com:8083/posts/getbestposts').then((res) => {
       self.items = res.data
     })
+
+    self.$store.commit('login')
+    console.log(self.$store.state.loggedIn)
+    self.$store.commit('logout')
+    console.log(self.$store.state.loggedIn)
   },
   methods: {
     openDialog (index) {
