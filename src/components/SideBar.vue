@@ -46,7 +46,7 @@ export default {
       { title: 'Chat Room', icon: 'mdi-chat' },
       { title: 'Profile', icon: 'mdi-account' },
       { title: 'Search', icon: 'mdi-magnify' },
-      { title: 'Settings', icon: 'mdi-cog' },
+      { title: 'Settings', icon: 'mdi-cog', link: { name: 'Settings'} },
       { title: 'Login / Sign up', icon: 'mdi-earth' },
     ],
   }),
