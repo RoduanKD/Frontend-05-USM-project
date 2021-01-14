@@ -43,11 +43,11 @@ export default {
     items: [
       { title: 'Community', icon: 'mdi-home', link: { name: 'Community' } },
       { title: 'Boards', icon: 'mdi-chart-bar', link: { name: 'Boards' } },
-      { title: 'Chat Room', icon: 'mdi-chat' },
-      { title: 'Profile', icon: 'mdi-account' },
-      { title: 'Search', icon: 'mdi-magnify' },
-      { title: 'Settings', icon: 'mdi-cog' },
-      { title: 'Login / Sign up', icon: 'mdi-earth' },
+      { title: 'Chat Room', icon: 'mdi-chat' , link:{name:'ChatRoom'} },
+      { title: 'Profile', icon: 'mdi-account' , link: {name:'Profile'} }, 
+      { title: 'Search', icon: 'mdi-magnify' ,link: {name:'Search'} }, 
+      { title: 'Settings', icon: 'mdi-cog' ,link: {name:'Settings'} }, 
+      { title: 'Login / Sign up', icon: 'mdi-earth' ,link: {name:'LoginSignup'} }, 
     ],
   }),
 }
