@@ -1,5 +1,6 @@
 <template>
-  <v-navigation-drawer color="primary" dark app permanent>
+  <v-navigation-drawer  
+       color="primary" dark app permanent>
       <template v-slot:prepend>
         <v-list-item two-line>
           <v-list-item-avatar>
@@ -18,6 +19,8 @@
         dense
         nav
       >
+        <v-list-item-group
+        >
         <v-list-item
           v-for="item in items"
           :key="item.title"
@@ -33,8 +36,10 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
+  
 </template>
 
 <script>
