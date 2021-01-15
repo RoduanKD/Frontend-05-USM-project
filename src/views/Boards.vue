@@ -14,8 +14,8 @@
 
       <template v-slot:extension>
         <v-tabs v-model="model" centered slider-color="orange">
-          <v-tab v-for="i in 3" :key="i" :href="`#tab-${i}`">
-            Board {{ i }}
+          <v-tab v-for="(item, i) in items" :key="item.id" :href="`#tab-${i}`">
+            {{ item.name }}
           </v-tab>
         </v-tabs>
       </template>
@@ -95,7 +95,7 @@
                               class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
                               style="height: 100%"
                             >
-                              <v-btn  dark color="primary"> Chat </v-btn>
+                              <v-btn dark color="primary"> Chat </v-btn>
                             </div>
                           </v-expand-transition></v-img
                         >
@@ -254,6 +254,7 @@
 export default {
   data() {
     return {
+      items: [],
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       show: false,
       model: "tab-2",
@@ -268,6 +269,13 @@ export default {
       return this.leaders.slice((s - 1) * 4, (s - 1) * 4 + 4);
     },
   },
+  mounted() {
+    const self = this;
+    this.axios
+      .get("http://syberctf.hadara-group.com:8083/boards/search/a")
+      .then((res) => {
+        self.items = res.data;
+      });
+  },
 };
 </script>
-// 
