@@ -19,11 +19,9 @@
         <v-text-field
           label="First Name"
           placeholder="first"
+          v-model="fname"
           outlined
         ></v-text-field>
-        <v-icon class="icon" medium>
-         mdi-cog
-        </v-icon>
       </v-col>
       <v-col class="edit-2"
         sm="4"
@@ -32,10 +30,8 @@
           label="Password"
           placeholder="********"
           outlined
+          v-model="user.password"
         ></v-text-field>
-        <v-icon class="icon" medium>
-         mdi-cog
-        </v-icon>
       </v-col>
       <v-col class="edit-3"
         sm="4"
@@ -44,10 +40,8 @@
           label="Specilaization"
           placeholder="specilaization"
           outlined
+          v-model="user.spec"
         ></v-text-field>
-        <v-icon class="icon" medium>
-         mdi-cog
-        </v-icon>
       </v-col>
       <v-col class="edit-4"
         sm="4"
@@ -56,7 +50,9 @@
           label="Registeration"
           placeholder="yyyy"
           outlined
+          v-model="user.start_year"
         ></v-text-field>
+        <v-btn @click="updateUserInfo">Update</v-btn>
       </v-col>
       <v-col class="edit-5"
         sm="4"
@@ -64,11 +60,9 @@
         <v-text-field
           label="Last Name"
           placeholder="last"
+          v-model="lname"
           outlined
         ></v-text-field>
-        <v-icon class="icon" medium>
-         mdi-cog
-        </v-icon>
       </v-col>
       <v-col class="edit-6"
         sm="4"
@@ -77,10 +71,8 @@
           label="Email"
           placeholder="email@gmail.com"
           outlined
+          v-model="user.email"
         ></v-text-field>
-        <v-icon class="icon" medium>
-         mdi-cog
-        </v-icon>
       </v-col>
       <v-col class="edit-7"
         sm="4"
@@ -89,10 +81,8 @@
           label="Birthday"
           placeholder="DD/MM/YY"
           outlined
+          v-model="user.age"
         ></v-text-field>
-        <v-icon class="icon" medium>
-         mdi-cog
-        </v-icon>
       </v-col>
       <v-col class="edit-8"
         sm="4"
@@ -101,6 +91,7 @@
           label="Current Year"
           placeholder="yyyy"
           outlined
+          v-model="user.study_year"
         ></v-text-field>
       </v-col>
       <v-img class="avatar"
@@ -116,6 +107,64 @@
     </v-img>
   </div>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    user: {
+      name: ''
+    },
+    last: '',
+    first: '',
+  }),
+  mounted () {
+    const self = this
+
+    self.getUserInfo()
+  },
+  methods: {
+    updateUserInfo () {
+      const self = this
+
+      const info = {
+        id: self.user.id,
+        name: `${self.first || self.fname} ${self.last || self.lname}`,
+        email: self.user.email,
+        password: self.user.password,
+        spec: self.user.spec,
+        university: self.user.university,
+        img: self.user.img,
+        community_name: self.user.community_name,
+        study_year: self.user.study_year,
+        start_year: self.user.start_year,
+        age: self.user.age
+      }
+
+      self.axios.post('http://syberctf.hadara-group.com:8083/users/update', info).then((res) => {
+        alert('done')
+        console.log(res)
+      })
+    },
+    getUserInfo () {
+      const self = this
+
+      self.axios.get('http://syberctf.hadara-group.com:8083/users/search/a').then((res) => {
+        self.user = res.data[0]
+      })
+    }
+  },
+  computed: {
+    fname: { 
+      get() { return this.user.name.split(' ')[0] },
+      set(v) { this.first = v }
+    },
+    lname: { 
+      get() { return this.user.name.split(' ')[1] },
+      set(v) { this.last = v }
+    },
+  }
+}
+</script>
 
 <style>
 div.adress {
