@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-img
+      @click="$router.push({ name: 'Search' })"
       src="@/top.png">
     </v-img>
     <v-img class="left"

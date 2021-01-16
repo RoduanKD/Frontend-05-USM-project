@@ -1,6 +1,7 @@
 <template>
   <div class="all">
     <v-img
+      @click="$router.push({ name: 'Search' })"
       src="@/top.png">
     </v-img>
     <v-img class="left"
@@ -16,7 +17,7 @@
     <v-img class="color"
       src="@/back-chat.png">
     </v-img>
-    <v-btn class="on" outlined color="white">
+    <v-btn class="on" outlined color="white" @click="$router.push({ name: 'Chat' })">
         Chat
     </v-btn>
     <v-img class="pic"
@@ -25,7 +26,7 @@
     <v-text-field
     color="#939393"
     class="read-1"
-    value="Katia AlGhazi"
+    :value="user.name"
     label="Name:"
     outlined
     readonly
@@ -33,7 +34,7 @@
     <v-text-field
     color="#939393"
     class="read-2"
-    value="20"
+    :value="user.age | moment('from', 'now', true)"
     label="Age:"
     outlined
     readonly
@@ -41,7 +42,7 @@
     <v-text-field
     color="#939393"
     class="read-3"
-    value="katy.gh@email.com"
+    :value="user.email"
     label="Email:"
     outlined
     readonly
@@ -49,7 +50,22 @@
   </div>
 </template>
 
-<style>
+<script>
+export default {
+  data: () => ({
+    user: {}
+  }),
+  beforeCreate () {
+    const self = this
+
+    self.axios.get('http://syberctf.hadara-group.com:8083/users/search/a').then((res) => {
+      self.user = res.data[0]
+    })
+  }
+}
+</script>
+
+<style scoped>
 .all {
     height: 700px;
 }
