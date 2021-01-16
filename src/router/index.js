@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Community from '../views/Community.vue'
+import ChatRoom from '../views/ChatRoom.vue'
+import Profile from '../views/Profile.vue'
+import Search from '../views/Search.vue'
+import Settings from '../views/Settings.vue'
+import LoginSignup from '../views/LoginSignup.vue'
+
 
 Vue.use(VueRouter)
 
@@ -13,26 +19,33 @@ const routes = [
   {
     path: '/boards',
     name: 'Boards',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Boards.vue'),
+    component: () => import('../views/Boards.vue')
   },
   {
-    path: '/settings',
-    name: 'Settings',
-    component: () => import('../views/Settings.vue')
-  },
-  {
-    path: '/profile',
+    path:'/profile',
     name: 'Profile',
-    component: () => import('../views/Profile.vue')
+    component:Profile
   },
   {
-    path: '/search',
+    path:'/chatroom',
+    name:'ChatRoom',
+    component:ChatRoom
+  },
+  {
+    path:'/login signup',
+    name:'LoginSignup',
+    component:LoginSignup
+    },
+  {
+    path:'/search',
     name: 'Search',
-    component: () => import('../views/Search.vue')
-  }
+    component:Search
+  },
+  {
+    path:'/settings',
+    name:'Settings',
+    component:Settings
+  },
 ]
 
 const router = new VueRouter({

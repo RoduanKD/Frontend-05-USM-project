@@ -8,17 +8,15 @@
 </template>
 
 <script>
-import SideBar from '@/components/SideBar';
+import SideBar from "@/components/SideBar";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     SideBar,
   },
 
-  data: () => ({
-    
-  }),
+  data: () => ({}),
 };
 </script>
