@@ -2,13 +2,9 @@
   <v-card>
     <!-- start in toolbar -->
     <v-toolbar color="primary" dark flat>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
       <v-toolbar-title>Boards</v-toolbar-title>
-
       <v-spacer></v-spacer>
-
-      <v-btn color="primary">
+      <v-btn color="primary" @click="$router.push({ name: 'Search' })">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
@@ -24,17 +20,17 @@
 
     <!-- srart in board tap -->
     <v-tabs-items v-model="model">
-      <v-tab-item v-for="i in 3" :key="i" :value="`tab-${i}`">
+      <v-tab-item v-for="(item, i) in items" :key="i" :value="`tab-${i}`">
         <!-- start in hero -->
         <v-container class="back">
           <div>
-            <v-row>
+            <v-row align="center">
               <v-col cols="6">
                 <v-img mt="-10" height="388px" src="../assets/about.png">
                 </v-img>
               </v-col>
               <v-col cols="6">
-                <h4 class="text-center" v-html="message"></h4>
+                <h1 class="text-center text-primary">{{ item.description }}</h1>
                 <h6 class="text-center">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -113,18 +109,17 @@
         </v-container>
         <!-- end in slider -->
 
-        <!-- start in title2 -->
-        <h1 style="color: black" class="text-center">
-          Scholar <span style="color: #836ea9"> Ships</span>
-        </h1>
-        <v-divider id="divi"></v-divider>
-        <!-- start in title2 -->
-
         <!-- start in box -->
-        <v-container>
+        <v-container v-if="item.scholarship.length">
+          <!-- start in title2 -->
+          <h1 style="color: black" class="text-center">
+            Scholar <span style="color: #836ea9"> Ships</span>
+          </h1>
+          <v-divider id="divi"></v-divider>
+          <!-- start in title2 -->
           <v-col cols="12">
             <v-row>
-              <v-col cols="6">
+              <v-col v-for="(scholar, i) in item.scholarship" :key="i" cols="6">
                 <v-hover close-delay="6" v-slot="{ hover }">
                   <v-sheet
                     :color="hover ? '#D4C8EB' : ''"
@@ -134,7 +129,11 @@
                     height="400"
                     shaped
                   >
-                    <h1 class="text-center">american university</h1>
+                    <h1 class="text-center">{{ scholar.title }}</h1>
+                    <h3>
+                      expiration date:
+                      {{ scholar.expiredDate | moment("from", "now") }}
+                    </h3>
                     <p>
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                       Ad nam natus culpa debitis voluptate ab sequi iste rem
@@ -145,7 +144,7 @@
                   </v-sheet>
                 </v-hover>
               </v-col>
-              <v-col cols="6">
+              <!-- <v-col cols="6">
                 <v-hover close-delay="6" v-slot="{ hover }">
                   <v-sheet
                     :color="hover ? '#FFCCCC' : ''"
@@ -165,17 +164,17 @@
                     <v-img src="~@/assets/h.png"></v-img>
                   </v-sheet>
                 </v-hover>
-              </v-col>
+              </v-col> -->
             </v-row>
           </v-col>
         </v-container>
         <!-- end in box -->
 
         <!-- start in title3 -->
-        <v-contariner>
+        <v-container>
           <h1 style="color: black" class="text-center">University Elites</h1>
           <v-divider id="divi"></v-divider>
-        </v-contariner>
+        </v-container>
         <!-- end in title3 -->
 
         <!-- start in card in people -->
@@ -257,7 +256,7 @@ export default {
       items: [],
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       show: false,
-      model: "tab-2",
+      model: "tab-0",
       message:
         '<h1 style="color:#8D79B4;">"the place we call home inspires us to discover whats is next"</h1>',
       slides: [1, 2, 3, 4],
@@ -271,7 +270,7 @@ export default {
   },
   mounted() {
     const self = this;
-    this.axios
+    self.axios
       .get("http://syberctf.hadara-group.com:8083/boards/search/a")
       .then((res) => {
         self.items = res.data;
