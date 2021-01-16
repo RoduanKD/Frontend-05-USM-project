@@ -45,7 +45,7 @@ export default {
       { title: 'Boards', icon: 'mdi-chart-bar', link: { name: 'Boards' } },
       { title: 'Chat Room', icon: 'mdi-chat' },
       { title: 'Profile', icon: 'mdi-account' },
-      { title: 'Search', icon: 'mdi-magnify' },
+      { title: 'Search', icon: 'mdi-magnify', link:{name:'Search'} },
       { title: 'Settings', icon: 'mdi-cog' },
       { title: 'Login / Sign up', icon: 'mdi-earth' },
     ],

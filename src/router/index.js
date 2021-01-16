@@ -2,10 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Community from '../views/Community.vue'
 
+
 Vue.use(VueRouter)
 
 const routes = [
   {
+    // w
     path: '/',
     name: 'Community',
     component: Community
@@ -17,7 +19,12 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Boards.vue')
-  }
+  },
+  {
+    path:'/search',
+    name: 'Search',
+    component: ()=> import('../views/Search.vue')
+  },
 ]
 
 const router = new VueRouter({
