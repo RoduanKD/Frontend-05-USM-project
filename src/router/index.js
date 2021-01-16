@@ -46,7 +46,6 @@ const routes = [
     name:'Settings',
     component:Settings
   },
-
 ]
 
 const router = new VueRouter({
