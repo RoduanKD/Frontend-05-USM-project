@@ -9,7 +9,7 @@
               background-color="primary"
               left
             >
-              <v-tab class="white--text">SIGN IN</v-tab>
+               <v-tab class="white--text" >SIGN IN</v-tab>
               <v-tab class="white--text">SIGN UP</v-tab>
               <v-tab-item>
                 <v-card class="mx-auto elevation-12 midcard Blured">
@@ -48,9 +48,9 @@
               <v-tab-item>
                 <v-card class="mx-auto elevation-12 midcard Blured">
                   <v-card-text class="pa-12">
-                    <v-form ref="form" class="py-0 py-2">
+                    <v-form ref="form" class=" py-2 pb-6">
                       <v-text-field
-                        name="username"
+                        name="name"
                         label="Username"
                         type="text"
                         v-model="name"
@@ -66,7 +66,7 @@
                         v-model="email"
                         :rules="emailRules"
                       ></v-text-field>
-                      <v-text-field
+                      <v-text-field class="pb-4"
                         name="password"
                         label="Password"
                         id="password"
@@ -243,10 +243,6 @@ export default {
 }
 .midcard {
   min-height: 400px;
-}
-.Flex {
-  flex-direction: column;
-  padding-top: 35px;
 }
 .back {
   background-image: url("~@/assets/LoginBackground.jpeg");
