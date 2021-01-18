@@ -91,7 +91,7 @@
                               class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
                               style="height: 100%"
                             >
-                              <v-btn dark color="primary"> Chat </v-btn>
+                              <v-btn dark color="primary"  @click="$router.push({ name: 'ChatRoom' })"> Chat </v-btn>
                             </div>
                           </v-expand-transition></v-img
                         >
