@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Community from '../views/Community.vue'
+import Login from '../views/Login.vue'
 import ChatRoom from '../views/ChatRoom.vue'
 import Profile from '../views/Profile.vue'
 import Search from '../views/Search.vue'
 import Settings from '../views/Settings.vue'
-import LoginSignup from '../views/LoginSignup.vue'
 
 
 
@@ -18,6 +18,7 @@ const routes = [
     name: 'Community',
     component: Community
   },
+  
   {
     path: '/boards',
     name: 'Boards',
@@ -34,9 +35,9 @@ const routes = [
     component:ChatRoom
   },
   {
-    path:'/login signup',
-    name:'LoginSignup',
-    component:LoginSignup
+    path:'/login',
+    name:'Login',
+    component:Login
     },
   {
     path:'/search',
