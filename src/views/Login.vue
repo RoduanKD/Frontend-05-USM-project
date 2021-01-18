@@ -235,7 +235,7 @@ export default {
     },
     loginUserInfo() {
   const self = this; 
-  self.axios.get('http://syberctf.hadara-group.com:8083/users/search/a').then((res) => {
+  self.axios.get('http://syberctf.hadara-group.com:8083/users/signin/{email}/{password}').then((res) => {
         self.user = res.data
       })
     },
