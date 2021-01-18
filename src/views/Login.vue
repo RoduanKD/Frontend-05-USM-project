@@ -9,7 +9,7 @@
               background-color="primary"
               left
             >
-               <v-tab class="white--text" >SIGN IN</v-tab>
+              <v-tab class="white--text">SIGN IN</v-tab>
               <v-tab class="white--text">SIGN UP</v-tab>
               <v-tab-item>
                 <v-card class="mx-auto elevation-12 midcard Blured">
@@ -34,7 +34,7 @@
                         id="password"
                         type="password"
                         required
-                        v-model="password"
+                        v-model="user.password"
                         :rules="passwordRules"
                       ></v-text-field>
                     </v-form>
@@ -48,12 +48,12 @@
               <v-tab-item>
                 <v-card class="mx-auto elevation-12 midcard Blured">
                   <v-card-text class="pa-12">
-                    <v-form ref="form" class=" py-2 pb-6">
+                    <v-form ref="form" class="py-2 pb-6">
                       <v-text-field
                         name="name"
                         label="Username"
                         type="text"
-                        v-model="name"
+                        v-model="user.name"
                         :counter="20"
                         :rules="nameRules"
                         required
@@ -63,16 +63,17 @@
                         label="Email"
                         type="email"
                         required
-                        v-model="email"
+                        v-model="user.email"
                         :rules="emailRules"
                       ></v-text-field>
-                      <v-text-field class="pb-4"
+                      <v-text-field
+                        class="pb-4"
                         name="password"
                         label="Password"
                         id="password"
                         type="password"
                         required
-                        v-model="password"
+                        v-model="user.password"
                         :rules="passwordRules"
                       ></v-text-field>
                       <v-select
@@ -80,7 +81,8 @@
                         name="specialization"
                         label="Specialization"
                         dense
-                        required v-model="select"
+                        required
+                        v-model="select"
                         :rules="[(v) => !!v || 'Specialization is required']"
                       ></v-select>
                       <v-menu
@@ -215,12 +217,11 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
-    checkbox: false, 
+    checkbox: false,
     date: new Date().toISOString().substr(0, 10),
     date2: new Date().toISOString().substr(0, 10),
     menu: false,
     menu2: false,
-    
   }),
   methods: {
     validate() {
@@ -228,6 +229,24 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
+    },
+    registerUserInfo() {
+      const self = this;
+      const info = {
+        name: self.user.name,
+        email: self.user.email,
+        password: self.user.password,
+        spec: self.user.spec,
+        university: self.user.university,
+        img: self.user.img,
+        community_name: self.user.community_name,
+        study_year: self.user.study_year,
+        start_year: self.user.start_year,
+        age: self.user.age,
+      };
+      self.axios
+        .post("http://syberctf.hadara-group.com:8083/users/register", info)
+        .then();
     },
   },
 };
