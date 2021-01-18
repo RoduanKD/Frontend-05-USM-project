@@ -24,7 +24,7 @@
                         name="nameemail"
                         label="Email / Username"
                         type="text"
-                        v-model="nameemail"
+                        v-model="user.name"
                         :rules="nameemailRules"
                         required
                       ></v-text-field>
@@ -41,7 +41,7 @@
                   </v-card-text>
                   <v-card-actions class="flex-column">
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="validate">Login</v-btn>
+                    <v-btn color="primary" @click="validate, loginUserInfo">Login</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-tab-item>
@@ -232,6 +232,12 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
+    },
+    loginUserInfo() {
+  const self = this; 
+  self.axios.get('http://syberctf.hadara-group.com:8083/users/search/a').then((res) => {
+        self.user = res.data
+      })
     },
     registerUserInfo() {
       const self = this;
