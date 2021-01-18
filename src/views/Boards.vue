@@ -228,7 +228,9 @@
 
 <style>
 .back {
-  background-color: #eee9f6;
+  background-image: url("~@/assets/LoginBackground.jpeg");
+  background-size: cover;
+  width: 100%;
 }
 #divi {
   max-height: 200px !important;

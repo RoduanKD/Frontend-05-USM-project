@@ -36,6 +36,24 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item v-if="!$store.state.loggedIn" :to="{ name:'Login' }">
+          <v-list-item-icon>
+            <v-icon>mdi-earth</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Login / Sign up</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item v-else @click="$store.commit('logout')">
+          <v-list-item-icon>
+            <v-icon>mdi-logout</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
          </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -49,10 +67,9 @@ export default {
       { title: 'Community', icon: 'mdi-home', link: { name: 'Community' } },
       { title: 'Boards', icon: 'mdi-chart-bar', link: { name: 'Boards' } },
       { title: 'Chat Room', icon: 'mdi-chat' , link:{name:'ChatRoom'} },
-      { title: 'Profile', icon: 'mdi-account' , link: {name:'Profile'} }, 
-      { title: 'Search', icon: 'mdi-magnify' ,link: {name:'Search'} }, 
-      { title: 'Settings', icon: 'mdi-cog' ,link: {name:'Settings'} }, 
-      { title: 'Login / Sign up', icon: 'mdi-earth' ,link: {name:'LoginSignup'} }, 
+      { title: 'Profile', icon: 'mdi-account' , link: {name:'Profile'} },
+      { title: 'Search', icon: 'mdi-magnify' ,link: {name:'Search'} },
+      { title: 'Settings', icon: 'mdi-cog' ,link: {name:'Settings'} },
     ],
   }),
 }

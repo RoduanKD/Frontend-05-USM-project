@@ -55,6 +55,7 @@
           v-model="keyword"
           color="white"
           v-on:keyup.enter="activateSearch"
+          dark
         ></v-text-field>
         <v-btn icon>
           <v-icon color="white" @click.prevent="activateSearch"

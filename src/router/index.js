@@ -6,6 +6,7 @@ import ChatRoom from '../views/ChatRoom.vue'
 import Profile from '../views/Profile.vue'
 import Search from '../views/Search.vue'
 import Settings from '../views/Settings.vue'
+import store from '../plugins/store'
 
 
 
@@ -18,41 +19,45 @@ const routes = [
     name: 'Community',
     component: Community
   },
-  
+
   {
     path: '/boards',
     name: 'Boards',
     component: () => import('../views/Boards.vue')
   },
   {
-    path:'/profile',
+    path: '/profile',
     name: 'Profile',
-    component:Profile
+    component: Profile
   },
   {
-    path:'/chatroom',
-    name:'ChatRoom',
-    component:ChatRoom
+    path: '/chatroom',
+    name: 'ChatRoom',
+    component: ChatRoom
   },
   {
-    path:'/login',
-    name:'Login',
-    component:Login
-    },
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    beforeEnter: (to, from, next) => {
+      if (store.state.loggedIn) next({ name: 'Community' })
+      next()
+    }
+  },
   {
-    path:'/search',
+    path: '/search',
     name: 'Search',
-    component:Search
+    component: Search
   },
   {
-    path:'/settings',
-    name:'Settings',
-    component:Settings
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
   },
   {
-  path:'/search',
+    path: '/search',
     name: 'Search',
-    component: ()=> import('../views/Search.vue')
+    component: () => import('../views/Search.vue')
   }
 ]
 
@@ -60,6 +65,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && !store.state.loggedIn) next({ name: 'Login' })
+  else next()
 })
 
 export default router

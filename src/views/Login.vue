@@ -24,7 +24,7 @@
                         name="nameemail"
                         label="Email / Username"
                         type="text"
-                        v-model="user.name"
+                        v-model="user.email"
                         :rules="nameemailRules"
                         required
                       ></v-text-field>
@@ -41,7 +41,9 @@
                   </v-card-text>
                   <v-card-actions class="flex-column">
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="validate, loginUserInfo">Login</v-btn>
+                    <v-btn color="primary" @click="loginUserInfo"
+                      >Login</v-btn
+                    >
                   </v-card-actions>
                 </v-card>
               </v-tab-item>
@@ -168,7 +170,7 @@
                       :disabled="!valid"
                       color="success"
                       class="mr-4"
-                      @click="validate,registerUserInfo"
+                      @click="registerUserInfo"
                     >
                       Sign Up
                     </v-btn>
@@ -195,8 +197,9 @@ export default {
   components: {},
   data: () => ({
     user: {
-        name: ''
-      },
+      email: '',
+      password: '',
+    },
     valid: false,
     nameemail: "",
     nameemailRules: [
@@ -234,13 +237,32 @@ export default {
       this.$refs.form.reset();
     },
     loginUserInfo() {
-  const self = this; 
-  self.axios.get('http://syberctf.hadara-group.com:8083/users/signin/{email}/{password}').then((res) => {
-        self.user = res.data
-      })
+      const self = this;
+      self.validate()
+      self.axios
+        .get(
+          `http://syberctf.hadara-group.com:8083/users/signin/${self.user.email}/${self.user.password}`
+        )
+        .then((res) => {
+          self.user = res.data;
+          if (self.user.id == -1) {
+            alert('wong credentials')
+            self.$store.commit('logout')
+          } else {
+            // Logged In Successfully
+            self.$router.push({ name: 'Community' })
+            self.$store.commit('login')
+          }
+        }).catch((e) => {
+          alert('something went wrong')
+          self.$store.commit('logout')
+          console.log(e)
+        })
     },
     registerUserInfo() {
       const self = this;
+      self.validate()
+      
       const info = {
         name: self.user.name,
         email: self.user.email,
@@ -253,15 +275,18 @@ export default {
         start_year: self.user.start_year,
         age: self.user.age,
       };
+
       self.axios
         .post("http://syberctf.hadara-group.com:8083/users/register", info)
-        .then();
+        .then((res) => {
+          console.log(res)
+        });
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .Blured {
   backdrop-filter: blur(3px);
   background: rgba(255, 255, 255, 0.7);
