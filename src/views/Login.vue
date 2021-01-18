@@ -82,7 +82,7 @@
                         label="Specialization"
                         dense
                         required
-                        v-model="select"
+                        v-model="user.spec"
                         :rules="[(v) => !!v || 'Specialization is required']"
                       ></v-select>
                       <v-menu
@@ -168,7 +168,7 @@
                       :disabled="!valid"
                       color="success"
                       class="mr-4"
-                      @click="validate"
+                      @click="validate,registerUserInfo"
                     >
                       Sign Up
                     </v-btn>
@@ -194,6 +194,9 @@ export default {
   name: "Home",
   components: {},
   data: () => ({
+    user: {
+        name: ''
+      },
     valid: false,
     nameemail: "",
     nameemailRules: [
