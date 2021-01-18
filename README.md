@@ -21,9 +21,9 @@ npm run lint
 ```
 
 ## TODO
-- Boards (Mohammad & Nour)
-- Profile (Wajd)
-- Settings (Raneem & Katy)
+- ~~Boards (Mohammad & Nour)~~
+- ~~Profile (Wajd)~~
+- ~~Settings (Raneem & Katy)~~
 - Chat (Taiseer & Solieman)
 - Search (Firas & Khaled)
 - Login/Signup (Ahmad & Abdallah)

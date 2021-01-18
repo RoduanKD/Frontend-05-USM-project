@@ -2,23 +2,21 @@
   <v-app>
     <side-bar></side-bar>
     <v-main>
-      <router-view></router-view>
+        <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import SideBar from '@/components/SideBar';
+import SideBar from "@/components/SideBar";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     SideBar,
   },
 
-  data: () => ({
-    
-  }),
+  data: () => ({}),
 };
 </script>
