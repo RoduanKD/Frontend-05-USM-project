@@ -8,10 +8,12 @@ import Settings from '../views/Settings.vue'
 import LoginSignup from '../views/LoginSignup.vue'
 
 
+
 Vue.use(VueRouter)
 
 const routes = [
   {
+    // w
     path: '/',
     name: 'Community',
     component: Community
@@ -46,6 +48,11 @@ const routes = [
     name:'Settings',
     component:Settings
   },
+  {
+  path:'/search',
+    name: 'Search',
+    component: ()=> import('../views/Search.vue')
+  }
 ]
 
 const router = new VueRouter({
