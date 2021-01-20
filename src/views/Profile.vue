@@ -10,15 +10,14 @@
         <v-icon dark right> mdi-magnify </v-icon>
       </v-btn>
     </div>
-    <v-app style="background-color: #7dabe7; color: white" class="app">
+    <div class="app primary lighten-4">
       <v-container class="push">
         <v-img
           class="avatar"
-          src="@/Avatar.png"
+          src="@/assets/Avatar.png"
           width="150"
           height="150"
-        ></v-img
-        >
+        ></v-img>
         <div id="online"></div>
         <br />
         <v-form class="with">
@@ -49,35 +48,39 @@
           ></v-text-field>
         </v-form>
       </v-container>
-      <div class="right">
-        <v-img class="pic" src="@/chat.png" width="522" height="355"> </v-img> <br>
-        <v-btn
-          class="on"
-          outlined
-          color="white"
-          @click="$router.push({ name: 'ChatRoom' })"
-        >
-          Chat
-        </v-btn>
-      </div>
-    </v-app>
+    </div>
+    <div class="right">
+      <v-img class="pic" src="@/assets/chat.png" width="522" height="355">
+      </v-img>
+      <br />
+      <v-btn
+        class="on"
+        outlined
+        color="white"
+        @click="$router.push({ name: 'ChatRoom' })"
+      >
+        Chat
+      </v-btn>
+    </div>
   </v-container>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      user: {}
-    }),
-    beforeCreate () {
-      const self = this
-  
-      self.axios.get('http://syberctf.hadara-group.com:8083/users/search/a').then((res) => {
-        self.user = res.data[0]
-      })
-    }
-  }
-  </script>
+export default {
+  data: () => ({
+    user: {},
+  }),
+  beforeCreate() {
+    const self = this;
+
+    self.axios
+      .get("http://syberctf.hadara-group.com:8083/users/search/a")
+      .then((res) => {
+        self.user = res.data[0];
+      });
+  },
+};
+</script>
 
 <style scoped>
 .app {
@@ -86,19 +89,19 @@
 .with {
   width: 400px;
 }
- #online {
-      width: 27px;
-      height: 27px;
-      background: rgb(103, 224, 103);
-      border-radius: 50%;
-      position: relative;
-      left: 137px;
-      top: -25px;
- }
+#online {
+  width: 27px;
+  height: 27px;
+  background: rgb(103, 224, 103);
+  border-radius: 50%;
+  position: relative;
+  left: 137px;
+  top: -25px;
+}
 .on {
   width: 300px;
   height: 55px;
-  background-color: #43425D;
+  background-color: #43425d;
   border: none;
   border-radius: 5% 5% 5% 5% / 50% 50% 50% 50%;
 }
@@ -113,6 +116,6 @@
 .push {
   position: relative;
   left: 20px;
-  top: 90px;
+  /* top: 90px; */
 }
 </style>

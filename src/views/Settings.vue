@@ -15,7 +15,7 @@
         <br /><br />
         <b class="ma-15 font"> Settings </b>
         <div>
-          <v-img class="avatar" src="@/Avatar.png" width="150" height="150">
+          <v-img class="avatar" src="@/assets/Avatar.png" width="150" height="150">
           </v-img>
           <div style="background-color: #f0f0f0" class="move">
             <v-icon> mdi-camera-plus </v-icon>
