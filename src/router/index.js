@@ -1,11 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Community from '../views/Community.vue'
-import Login from '../views/Login.vue'
-import ChatRoom from '../views/ChatRoom.vue'
-import Profile from '../views/Profile.vue'
-import Search from '../views/Search.vue'
-import Settings from '../views/Settings.vue'
 import store from '../plugins/store'
 
 
@@ -28,31 +23,22 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: () => import('../views/Profile.vue') 
   },
   {
     path: '/chatroom',
     name: 'ChatRoom',
-    component: ChatRoom
+    component: () => import('../views/ChatRoom.vue') 
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login,
-    beforeEnter: (to, from, next) => {
-      if (store.state.loggedIn) next({ name: 'Community' })
-      next()
-    }
-  },
-  {
-    path: '/search',
-    name: 'Search',
-    component: Search
+    component: () => import('../views/Login.vue') 
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: Settings
+    component: () => import('../views/Settings.vue') 
   },
   {
     path: '/search',
