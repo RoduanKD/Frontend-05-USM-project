@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "js-cookie": "^2.2.1",
+    "pluralize": "^8.0.0",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.2",
     "vue-moment": "^4.1.0",
