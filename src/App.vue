@@ -1,8 +1,11 @@
 <template>
-  <v-app>
-    <side-bar></side-bar>
+  <v-app >
+    <side-bar
+     
+    ></side-bar>
     <v-main>
-        <router-view></router-view>
+      <router-view></router-view>
+    
     </v-main>
   </v-app>
 </template>
@@ -17,6 +20,8 @@ export default {
     SideBar,
   },
 
-  data: () => ({}),
+
+   data: () => ({
+  }),
 };
 </script>

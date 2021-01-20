@@ -1,8 +1,5 @@
 <template>
   <v-card flat>
-<!-- Start of Test Section -->
-
-<!-- End of Test Section -->
     <!-- Back to Top button -->
     <v-btn
       v-scroll="onScroll"
@@ -18,7 +15,6 @@
       <v-icon>mdi-arrow-up</v-icon>
     </v-btn>
     <v-card class="mx-auto" max-width="80%" :style="act">
-      
       <!-- Seach Section -->
       <!------------------------------------------------------------------------- How to know how access the item input-43----------------------------------------------------->
       <v-toolbar flat color="primary" class="text-white">
@@ -39,42 +35,7 @@
       </v-toolbar>
 
       <!-- Filter Section -->
-
-      <div>
-        <v-chip
-          class="ma-2"
-          :input-value="userValue"
-          @click="userValue = !userValue"
-          filter
-        >
-          People</v-chip
-        >
-        <v-chip
-          class="ma-2"
-          :input-value="postValue"
-          @click="postValue = !postValue"
-          filter
-        >
-          Post</v-chip
-        >
-        <v-chip
-          class="ma-2"
-          :input-value="boardValue"
-          @click="boardValue = !boardValue"
-          filter
-        >
-          Community</v-chip
-        >
-        <v-chip
-          class="ma-2"
-          :input-value="communityValue"
-          @click="communityValue = !communityValue"
-          filter
-        >
-          Board</v-chip
-        >
-      </div>
-      <!-- <tagSection ></tagSection> -->
+      <search-filters></search-filters>
 
       <!-- Show Section -->
 
@@ -85,7 +46,7 @@
         </div>
 
         <!--User Section -->
-        <div class="text-center ma-2" v-if="userLoading">
+        <div class="text-center ma-2" v-if="loading['user']">
           <v-progress-circular
             indeterminate
             color="primary"
@@ -93,18 +54,18 @@
         </div>
         <v-container
           class="grey lighten-5"
-          v-if="users.length || post.length || community.length || board.length"
+          v-if="items.user.length || items.post.length || items.community.length || items.board.length"
         >
           <v-row no-gutters>
             <!----------------------------------------------------------------------------How to justify center------------------------------------------------------------------------------------->
             <v-col cols="11" justify-center sm="11">
               <v-expansion-panels class="Panel" v-model="panel" multiple>
                 <!-- People Section -->
-                <v-expansion-panel v-if="users.length">
+                <v-expansion-panel v-if="items.user.length">
                   <v-expansion-panel-header>People</v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <v-card
-                      v-for="item in users.slice(x, y)"
+                      v-for="item in items.user.slice(x, y)"
                       :key="item.id"
                       width="90%"
                       class="mx-auto mt-3"
@@ -126,11 +87,11 @@
                   </v-expansion-panel-content>
                 </v-expansion-panel>
                 <!-- Post Section -->
-                <v-expansion-panel v-if="post.length">
+                <v-expansion-panel v-if="items.post.length">
                   <v-expansion-panel-header>Post</v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <v-card
-                      v-for="item in post.slice(x, y)"
+                      v-for="item in items.post.slice(x, y)"
                       :key="item.id"
                       width="90%"
                       class="mx-auto mt-3"
@@ -188,11 +149,11 @@
                   </v-expansion-panel-content>
                 </v-expansion-panel>
                 <!-- Board Section -->
-                <v-expansion-panel v-if="board.length">
+                <v-expansion-panel v-if="items.board.length">
                   <v-expansion-panel-header>Boards</v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <v-card
-                      v-for="item in board.slice(x, y)"
+                      v-for="item in items.board.slice(x, y)"
                       :key="item.id"
                       width="90%"
                       class="mx-auto mt-3"
@@ -217,11 +178,11 @@
                   </v-expansion-panel-content>
                 </v-expansion-panel>
                 <!-- Community Section -->
-                <v-expansion-panel v-if="community.length">
+                <v-expansion-panel v-if="items.community.length">
                   <v-expansion-panel-header>Community</v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <v-card
-                      v-for="item in community.slice(x, y)"
+                      v-for="item in items.community.slice(x, y)"
                       :key="item.id"
                       width="90%"
                       class="mx-auto mt-3"
@@ -266,22 +227,19 @@
 
 
 <script>
-// import tagSection from '@/components/searchComponents/tagSection';
+import SearchFilters from '@/components/search/SearchFilters.vue'
+import pl from 'pluralize'
 
 export default {
   name: "Home",
   components: {
-    // tagSection,
+    SearchFilters,
   },
 
   data: () => ({
     fab: false,
 
     keyword: "",
-    users: [],
-    post: [],
-    community: [],
-    board: [],
 
     colo: "",
     act: "margin-top: 200px",
@@ -291,23 +249,20 @@ export default {
     y: "5",
 
     panel: [],
-    items: 4,
+    itemsCount: 4,
 
-    userValue: true,
-    postValue: true,
-    boardValue: true,
-    communityValue: true,
-    userLoading: false,
-
-    postLoading: false,
-    boardLoading: false,
-    communityLoading: false,
-
-    //////////Start of test Section
-    aaa:
-      "dfgadfashfasdhfksjdfhkfhaskfjhskdfahsdkfashfjsfhkahdfk sgkjhdfgkjhdfgksj dfghksdf hgskfdgh sdkfgjhd kgjhfkasjd fhskdjfh skgjhdfg jkfdghkdj ghgrjkaehgk jashkasjfhk sjdfhaskdfjh kgjhdfk gjhgkjerhkjah kajwefh aksjdfh askjdfh skjdfh kasjdfhkasj dfhsdkjfhskjdfhas dkfjhgaerjkghrekjghghdfoivdn kdf ko pgsjgohdfgkjgkd fgdhfjgfdhg kjdfghkdjfg hdkfgjh 0iwfwiruweriu woierhw rj hskjf hskdfj hwkejfhrkjherkjghdkfj hkf lorem",
-
-    ////////////////////////////End Of test Section
+    loading: {
+      user: false,
+      post: false,
+      board: false,
+      community: false,
+    },
+    items: {
+      user: [],
+      post: [],
+      board: [],
+      community: [],
+    },
   }),
 
   methods: {
@@ -326,7 +281,7 @@ export default {
 
     //Open all panel
     all() {
-      this.panel = [...Array(this.items).keys()].map((k, i) => i);
+      this.panel = [...Array(this.itemsCount).keys()].map((k, i) => i);
     },
     // Colapse all panel
     none() {
@@ -334,72 +289,32 @@ export default {
     },
 
     activateSearch() {
+      const self = this
       this.colo = "grey";
       this.act = "margin-top: 10px";
+      const filters = ['user', 'board', 'community']
 
-      if (this.userValue == true && this.keyword != "") {
-        this.userLoading = true;
-        this.checkUser();
-      }
-      if (this.postValue == true && this.keyword != "") {
-        this.postLoading = true;
-        this.checkPost();
-      }
-      if (this.boardValue == true && this.keyword != "") {
-        this.boardLoading = true;
-        this.checkBoard();
-      }
-      if (this.communityValue == true && this.keyword != "") {
-        this.communityLoading = true;
-        this.checkCommunity();
-      }
+      filters.forEach(filter => {
+        if (this.getFilter(filter) && this.keyword != "") {
+          self.loading[filter] = true
+          this.search(filter);
+        }
+      })
     },
-
+    getFilter (target) {
+      return this.$store.getters.searchPage(target)
+    },
     // Fetching Data from The Server
-    //////////////////////////////////////////////Can We Change it to a switch or make it simpler???
-    checkUser() {
-      this.axios
+    search (target) {
+      const self = this
+
+      self.axios
         .get(
-          "http://syberctf.hadara-group.com:8083/users/search/" + this.keyword
+          `http://syberctf.hadara-group.com:8083/${target != 'community' ? pl(target) : target}/search/` + this.keyword
         )
         .then((res) => {
-          this.users = res.data;
-          this.userLoading = false;
-        })
-        .catch((error) => console.log(error));
-    },
-    checkPost() {
-      this.axios
-        .get(
-          // "http://syberctf.hadara-group.com:8083/posts/search/" + this.keyword
-          "http://syberctf.hadara-group.com:8083/posts/getbestposts"
-        )
-        .then((res) => {
-          this.post = res.data;
-          this.postLoading = true;
-        })
-        .catch((error) => console.log(error));
-    },
-    checkBoard() {
-      this.axios
-        .get(
-          "http://syberctf.hadara-group.com:8083/boards/search/" + this.keyword
-        )
-        .then((res) => {
-          this.board = res.data;
-          this.boardLoading = true;
-        })
-        .catch((error) => console.log(error));
-    },
-    checkCommunity() {
-      this.axios
-        .get(
-          "http://syberctf.hadara-group.com:8083/community/search/" +
-            this.keyword
-        )
-        .then((res) => {
-          this.community = res.data;
-          this.communityLoading = true;
+          self.items[target] = res.data
+          self.loading[target] = false
         })
         .catch((error) => console.log(error));
     },
@@ -410,7 +325,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .accent {
   position: relative;
   left: 40%;
