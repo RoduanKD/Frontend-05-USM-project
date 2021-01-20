@@ -1,27 +1,5 @@
 <template>
   <v-card flat>
-    <!-- Light Mode / Dark Mode Section -->
-    <div class="ma-4">
-      <v-card class="d-flex justify-end mb-6" flat tile>
-        <v-tooltip v-if="!$vuetify.theme.dark" bottom>
-          <template v-slot:activator="{ on }">
-            <v-btn v-on="on" color="primary" small fab @click="darkMode">
-              <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
-            </v-btn>
-          </template>
-          <span>Dark Mode On</span>
-        </v-tooltip>
-
-        <v-tooltip v-else bottom>
-          <template v-slot:activator="{ on }">
-            <v-btn v-on="on" color="primary" small fab @click="darkMode">
-              <v-icon color="yellow">mdi-white-balance-sunny</v-icon>
-            </v-btn>
-          </template>
-          <span>Dark Mode Off</span>
-        </v-tooltip>
-      </v-card>
-    </div>
     <!-- Back to Top button -->
     <v-btn
       v-scroll="onScroll"
@@ -289,9 +267,6 @@ export default {
 
   methods: {
     //////////Start of test Section
-    darkMode() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-    },
     ////////////////////////////End Of test Section
 
     //Back To top if scrolled
