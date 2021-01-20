@@ -50,13 +50,14 @@
           </v-list-item-content>
         </v-list-item>
         <div class="ma-2">
-          <v-tooltip v-if="!$vuetify.theme.dark">
+          <v-tooltip  v-if="!$vuetify.theme.dark">
             <template v-slot:activator="{ on }">
               <v-icon v-on="on" fab @click="darkMode"
                 >mdi-moon-waxing-crescent</v-icon
               >
             </template>
           </v-tooltip>
+
           <v-tooltip v-else>
             <template v-slot:activator="{ on }">
               <v-icon v-on="on" fab @click="darkMode" color="yellow"
