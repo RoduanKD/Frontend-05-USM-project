@@ -22,7 +22,7 @@
     <v-tabs-items v-model="model">
       <v-tab-item v-for="(item, i) in items" :key="i" :value="`tab-${i}`">
         <!-- start in hero -->
-        <v-container  :background-color="$vuetify.theme.dark ? 'ligtblack' : 'primary'" class="photo">
+        <v-container  :color="$vuetify.theme.dark ? 'ligtblack' : ' #EEE9F6'" class="photo">
           <div  >
             <v-row align="center">
               <v-col cols="6">
