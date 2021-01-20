@@ -4,7 +4,7 @@
     <v-toolbar :color="$vuetify.theme.dark ? 'ligtblack' : 'primary'"   id="bar-color" dark >
       <v-toolbar-title>Boards</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn color="primary" @click="$router.push({ name: 'Search' })">
+      <v-btn  @click="$router.push({ name: 'Search' })">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
