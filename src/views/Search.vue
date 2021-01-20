@@ -440,7 +440,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .accent {
   position: relative;
   left: 40%;
