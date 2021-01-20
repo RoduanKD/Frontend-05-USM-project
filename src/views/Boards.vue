@@ -1,7 +1,7 @@
 <template>
-  <v-card>
+  <v-card :color="$vuetify.theme.dark ? 'ligtblack' : 'primary'">
     <!-- start in toolbar -->
-    <v-toolbar color="primary" dark flat>
+    <v-toolbar :color="$vuetify.theme.dark ? 'ligtblack' : 'primary'"   id="bar-color" dark >
       <v-toolbar-title>Boards</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn color="primary" @click="$router.push({ name: 'Search' })">
@@ -22,16 +22,16 @@
     <v-tabs-items v-model="model">
       <v-tab-item v-for="(item, i) in items" :key="i" :value="`tab-${i}`">
         <!-- start in hero -->
-        <v-container class="back">
-          <div>
+        <v-container  :background-color="$vuetify.theme.dark ? 'ligtblack' : 'primary'" class="photo">
+          <div  >
             <v-row align="center">
               <v-col cols="6">
                 <v-img mt="-10" height="388px" src="../assets/about.png">
                 </v-img>
               </v-col>
-              <v-col cols="6">
-                <h1 class="text-center text-primary">{{ item.description }}</h1>
-                <h6 class="text-center">
+              <v-col cols="6"  >
+                <h1   class="text-center text-primary">{{ item.description }}</h1>
+                <h6  class="text-center">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -51,7 +51,7 @@
 
         <!-- start in title -->
         <v-container>
-          <h1 style="color: black" class="text-center">
+          <h1   class="text-center">
             University LeaderShips
           </h1>
           <v-divider id="divi"></v-divider>
@@ -112,7 +112,7 @@
         <!-- start in box -->
         <v-container v-if="item.scholarship.length">
           <!-- start in title2 -->
-          <h1 style="color: black" class="text-center">
+          <h1   class="text-center">
             Scholar <span style="color: #836ea9"> Ships</span>
           </h1>
           <v-divider id="divi"></v-divider>
@@ -172,7 +172,7 @@
 
         <!-- start in title3 -->
         <v-container>
-          <h1 style="color: black" class="text-center">University Elites</h1>
+          <h1  class="text-center">University Elites</h1>
           <v-divider id="divi"></v-divider>
         </v-container>
         <!-- end in title3 -->
@@ -188,7 +188,7 @@
             >
               <v-img src="~@/assets/sara.png" height="200px"></v-img>
 
-              <v-card-title style="color: black" class="justify-center">
+              <v-card-title   class="justify-center">
                 sara jack
               </v-card-title>
 
@@ -226,11 +226,9 @@
   </v-card>
 </template>
 
-<style>
-.back {
-  background-image: url("~@/assets/LoginBackground.jpeg");
-  background-size: cover;
-  width: 100%;
+<style  scoped>
+.photo {
+  background-color: #EEE9F6 !important;
 }
 #divi {
   max-height: 200px !important;
@@ -248,6 +246,9 @@
   position: absolute;
   width: 100%;
 }
+/* #bar-color {
+  background-color: #3c3b54 ;
+} */
 </style>
 
 
