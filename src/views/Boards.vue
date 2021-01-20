@@ -1,7 +1,7 @@
 <template>
-  <v-card :color="$vuetify.theme.dark ? 'ligtblack' : 'primary'">
+  <v-card :color="$vuetify.theme.dark ? 'lightblack' : 'primary'">
     <!-- start in toolbar -->
-    <v-toolbar :color="$vuetify.theme.dark ? 'ligtblack' : 'primary'"   id="bar-color" dark >
+    <v-toolbar color="primary" dark>
       <v-toolbar-title>Boards</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn  @click="$router.push({ name: 'Search' })">
@@ -9,8 +9,8 @@
       </v-btn>
 
       <template v-slot:extension>
-        <v-tabs v-model="model" centered slider-color="orange">
-          <v-tab v-for="(item, i) in items" :key="item.id" :href="`#tab-${i}`">
+        <v-tabs v-model="model" centered color="white" slider-color="white">
+          <v-tab dark v-for="(item, i) in items" :key="item.id" :href="`#tab-${i}`">
             {{ item.name }}
           </v-tab>
         </v-tabs>
@@ -22,7 +22,7 @@
     <v-tabs-items v-model="model">
       <v-tab-item v-for="(item, i) in items" :key="i" :value="`tab-${i}`">
         <!-- start in hero -->
-        <v-container  :color="$vuetify.theme.dark ? 'ligtblack' : ' #EEE9F6'" class="photo">
+        <v-container  :color="$vuetify.theme.dark ? 'lightblack' : ' #EEE9F6'" :class="$vuetify.theme.dark ? '' : 'photo'">
           <div  >
             <v-row align="center">
               <v-col cols="6">
@@ -246,9 +246,6 @@
   position: absolute;
   width: 100%;
 }
-/* #bar-color {
-  background-color: #3c3b54 ;
-} */
 </style>
 
 
