@@ -110,7 +110,7 @@
         <!-- end in slider -->
 
         <!-- start in box -->
-        <v-container v-if="item.scholarship.length">
+        <v-container v-if="item.scholarship ? item.scholarship.length : false">
           <!-- start in title2 -->
           <h1   class="text-center">
             Scholar <span style="color: #836ea9"> Ships</span>
@@ -271,7 +271,7 @@ export default {
   mounted() {
     const self = this;
     self.axios
-      .get("/boards/search/a")
+      .get(`/boards/boardbyuserid/${self.$store.getters.authenticated.id}`)
       .then((res) => {
         self.items = res.data;
       });
