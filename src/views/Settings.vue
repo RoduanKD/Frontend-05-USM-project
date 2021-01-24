@@ -130,7 +130,7 @@ export default {
       };
 
       self.axios
-        .post("http://syberctf.hadara-group.com:8083/users/update", info)
+        .post("/users/update", info)
         .then((res) => {
           alert("done");
           console.log(res);
@@ -140,7 +140,7 @@ export default {
       const self = this;
 
       self.axios
-        .get("http://syberctf.hadara-group.com:8083/users/search/a")
+        .get("/users/search/a")
         .then((res) => {
           self.user = res.data[0];
         });

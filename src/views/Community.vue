@@ -70,7 +70,7 @@ export default {
   mounted() {
     // Mr. Anas has to fix CORs problem here.
     const self = this
-    this.axios.get('http://syberctf.hadara-group.com:8083/posts/getbestposts').then((res) => {
+    this.axios.get('/posts/getbestposts').then((res) => {
       self.items = res.data
     })
   },

@@ -271,7 +271,7 @@ export default {
   mounted() {
     const self = this;
     self.axios
-      .get("http://syberctf.hadara-group.com:8083/boards/search/a")
+      .get("/boards/search/a")
       .then((res) => {
         self.items = res.data;
       });

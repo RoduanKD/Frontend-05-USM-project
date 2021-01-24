@@ -335,7 +335,7 @@ export default {
 
       self.axios
         .get(
-          `http://syberctf.hadara-group.com:8083/${target != 'community' ? pl(target) : target}/search/` + this.keyword
+          `/${target != 'community' ? pl(target) : target}/search/` + this.keyword
         )
         .then((res) => {
           self.items[target] = res.data
