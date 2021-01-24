@@ -26,9 +26,10 @@
           <v-card-text class="text--primary">
             <div>
               {{
-                item.value.length > 40
+                item.value ? 
+                (item.value.length > 40
                   ? item.value.substr(0, 40) + " ..."
-                  : item.value
+                  : item.value) : ''
               }}
             </div>
           </v-card-text>
@@ -68,9 +69,8 @@ export default {
     dialog: false,
   }),
   mounted() {
-    // Mr. Anas has to fix CORs problem here.
     const self = this
-    this.axios.get('/posts/getbestposts').then((res) => {
+    this.axios.get(`/posts/getallposts/${self.$store.getters.authenticated.id}`).then((res) => {
       self.items = res.data
     })
   },
