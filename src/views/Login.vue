@@ -24,7 +24,7 @@
                         name="nameemail"
                         label="Email / Username"
                         type="text"
-                        v-model="user.email"
+                        v-model="user.nameemail"
                         :rules="nameemailRules"
                         required
                       ></v-text-field>
@@ -44,6 +44,7 @@
                     <v-btn color="primary" @click="loginUserInfo"
                       >Login</v-btn
                     >
+                    <router-link ref="redirect" :to="$route.query.redirect ? $route.query.redirect : '/'"></router-link>
                   </v-card-actions>
                 </v-card>
               </v-tab-item>
@@ -204,7 +205,7 @@ export default {
     nameemail: "",
     nameemailRules: [
       (v) => !!v || "Username/Email is required",
-      (v) => (v && v.length <= 20) || "Name must be less than 10 characters",
+      (v) => (v && v.length <= 50) || "Name must be less than 50 characters",
     ],
     name: "",
     nameRules: [
@@ -229,6 +230,11 @@ export default {
     menu: false,
     menu2: false,
   }),
+  mounted () {
+    const self = this
+
+    self.getCommunities()
+  },
   methods: {
     validate() {
       this.$refs.form.validate();
@@ -241,17 +247,17 @@ export default {
       self.validate()
       self.axios
         .get(
-          `http://syberctf.hadara-group.com:8083/users/signin/${self.user.email}/${self.user.password}`
+          `/users/signin/${self.user.nameemail}/${self.user.password}`
         )
-        .then((res) => {
+        .then((res)  => {
           self.user = res.data;
           if (self.user.id == -1) {
             alert('wong credentials')
             self.$store.commit('logout')
           } else {
             // Logged In Successfully
-            self.$router.push({ name: 'Community' })
-            self.$store.commit('login')
+            self.$store.commit('login', res.data)
+            self.$refs.redirect.$el.click()
           }
         }).catch((e) => {
           alert('something went wrong')
@@ -267,21 +273,35 @@ export default {
         name: self.user.name,
         email: self.user.email,
         password: self.user.password,
-        spec: self.user.spec,
         university: self.user.university,
         img: self.user.img,
-        community_name: self.user.community_name,
+        community_name: self.user.spec,
         study_year: self.user.study_year,
         start_year: self.user.start_year,
         age: self.user.age,
       };
 
       self.axios
-        .post("http://syberctf.hadara-group.com:8083/users/register", info)
-        .then((res) => {
-          console.log(res)
+        .post("/users/register", info)
+        .then(async (res) => {
+          if (self.user.id == -1) {
+            alert('wong credentials')
+            self.$store.commit('logout')
+          } else {
+            // Logged In Successfully
+            self.$store.commit('login', res.data)
+            self.$refs.redirect.$el.click()
+
+          }
         });
     },
+    getCommunities () {
+      const self = this
+
+      self.axios.get('/community/getCommunities').then((res) => {
+        self.specialization = res.data.map((t) => t.name)
+      })
+    }
   },
 };
 </script>

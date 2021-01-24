@@ -14,7 +14,7 @@
       <v-container class="push">
         <v-img
           class="avatar"
-          src="@/assets/Avatar.png"
+          :src="user.img"
           width="150"
           height="150"
         ></v-img>
@@ -67,18 +67,11 @@
 
 <script>
 export default {
-  data: () => ({
-    user: {},
-  }),
-  beforeCreate() {
-    const self = this;
-
-    self.axios
-      .get("http://syberctf.hadara-group.com:8083/users/search/a")
-      .then((res) => {
-        self.user = res.data[0];
-      });
-  },
+  computed: {
+    user () {
+      return this.$store.getters.authenticated
+    },
+  }
 };
 </script>
 

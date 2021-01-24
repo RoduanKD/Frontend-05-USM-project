@@ -23,22 +23,22 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import('../views/Profile.vue') 
+    component: () => import('../views/Profile.vue')
   },
   {
     path: '/chatroom',
     name: 'ChatRoom',
-    component: () => import('../views/ChatRoom.vue') 
+    component: () => import('../views/ChatRoom.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue') 
+    component: () => import('../views/Login.vue')
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import('../views/Settings.vue') 
+    component: () => import('../views/Settings.vue')
   },
   {
     path: '/search',
@@ -54,7 +54,10 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !store.state.loggedIn) next({ name: 'Login' })
+  if (to.name !== 'Login' && !store.state.user) {
+    to = ({ name: 'Login', query: { redirect: to.path } })
+    next(to)
+  }
   else next()
 })
 
