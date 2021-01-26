@@ -12,7 +12,7 @@
               <v-tab class="white--text">SIGN IN</v-tab>
               <v-tab class="white--text">SIGN UP</v-tab>
               <v-tab-item>
-                <v-card class="mx-auto elevation-12 midcard Blured">
+                <v-card class="mx-auto elevation-12 midcard">
                   <v-card-text class="blured">
                     <v-form
                       v-model="valid"
@@ -307,10 +307,6 @@ export default {
 </script>
 
 <style scoped>
-.Blured {
-  backdrop-filter: blur(3px);
-  background: rgba(255, 255, 255, 0.7);
-}
 .colortab {
   color: #43425d !important ;
 }
@@ -321,10 +317,15 @@ export default {
   background-image: url("~@/assets/LoginBackground.jpeg");
   background-size: cover;
   width: 100%;
+  position: relative;
 }
-
-.blured {
+.back::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.7);
 }
 </style>
