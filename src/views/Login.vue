@@ -2,7 +2,7 @@
   <div class="back fill-height">
     <v-container justify-center fluid fill-height>
       <v-row justify="center">
-        <v-col cols="4">
+        <v-col cols="12" md="4">
           <v-card>
             <v-tabs
               color="deep-purple accent-4"

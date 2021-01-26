@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="4" v-for="(item, i) in items" :key="item.id">
+      <v-col cols="12" sm="6" md="4" v-for="(item, i) in items" :key="item.id">
         <v-card class="mx-auto">
           <v-img
             class="white--text align-end"

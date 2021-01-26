@@ -23,7 +23,7 @@
       <v-tab-item v-for="(item, i) in items" :key="i" :value="`tab-${i}`">
         <!-- start in hero -->
         <v-container  :color="$vuetify.theme.dark ? 'lightblack' : ' #EEE9F6'" :class="$vuetify.theme.dark ? '' : 'photo'">
-          <div  >
+          <div>
             <v-row align="center">
               <v-col cols="6">
                 <v-img mt="-10" height="388px" src="../assets/about.png">
@@ -68,7 +68,7 @@
             show-arrows-on-hover
           >
             <v-carousel-item
-              v-for="s in Math.ceil(leaders.length / 4)"
+              v-for="s in Math.ceil(leaders.length / slideSize)"
               :key="s"
             >
               <v-col cols="12">
@@ -76,7 +76,7 @@
                   <v-col
                     v-for="leader in giveMeTheSlicedArray(s)"
                     :key="leader"
-                    cols="3"
+                    :cols="mini ? 6 : 3"
                   >
                     <v-hover v-slot="{ hover }">
                       <v-card color="secondary" class="mx-auto" max-width="360">
@@ -263,9 +263,17 @@ export default {
       leaders: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // 10
     };
   },
+  computed: {
+    mini () {
+      return this.$vuetify.breakpoint.mdAndDown;
+    },
+    slideSize () {
+      return this.mini ? 2 : 4
+    }
+  },
   methods: {
     giveMeTheSlicedArray(s) {
-      return this.leaders.slice((s - 1) * 4, (s - 1) * 4 + 4);
+      return this.leaders.slice((s - 1) * this.slideSize, (s - 1) * this.slideSize + this.slideSize);
     },
   },
   mounted() {
