@@ -26,9 +26,11 @@ export default {
     SideBar,
   },
 
-  data: () => ({
-    drawer: false
-  }),
+  data () {
+    return {
+      drawer: !this.mini
+    }
+  },
 
   computed: {
     mini () {

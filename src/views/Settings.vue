@@ -15,7 +15,7 @@
         <br /><br />
         <b class="ma-15 font"> Settings </b>
         <div>
-          <v-img class="avatar" src="@/assets/Avatar.png" width="150" height="150">
+          <v-img class="avatar" :src="user.img" width="150" height="150">
           </v-img>
           <div style="background-color: #f0f0f0" class="move">
             <v-icon> mdi-camera-plus </v-icon>
@@ -139,11 +139,12 @@ export default {
     getUserInfo() {
       const self = this;
 
-      self.axios
-        .get("/users/search/a")
-        .then((res) => {
-          self.user = res.data[0];
-        });
+      self.user = this.$store.getters.authenticated
+      // self.axios
+      //   .get("/users/search/a")
+      //   .then((res) => {
+      //     self.user = res.data[0];
+      //   });
     },
   },
   computed: {
